@@ -1,0 +1,5 @@
+$(eval $(call LaTeXWithBibTeX,src/flow-over-hill,build,flow-over-hill))
+
+build/flow-over-hill/flow-over-hill.pdf: \
+  src/flow-over-hill/ametsoc2014.bst \
+  src/flow-over-hill/references.bib
