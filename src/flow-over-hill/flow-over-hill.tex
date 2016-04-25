@@ -59,8 +59,7 @@ Given the incompressible, steady state flow, the flux across the inlet boundary,
 A few thoughts arise following on from this discussion:
 \begin{itemize}
 	\item Tracing streamlines that start at different heights we find that streamlines near the lower boundary will have greater changes in potential energy than streamlines near the upper boundary.  If this is true, then pressure and temperature will decrease the most following streamlines at the ground of the hill, and neither pressure nor temperature will vary along the upper boundary.
-	\item We should look at our numerical model results and diagnose pressure and temperature fields from the prognostic variables.  Hydrostatic balance means pressure will vary with height as well as due to Bernoulli's principle, so we should subtract the hydrostatic pressure field in order to look only at the perturbation pressure field.
-	\item How does potential temperature vary?  Recall that potential temperature, $\theta = T \left( p_0 / p \right)^{R/c_p}$.
+	\item If we can get a neutrally stable flow test case working, we should look at our numerical model pressure and temperature fields and see if their perturbations match Bernoulli's principle.
 	\item Can we explain the fluid behaviour using the Euler equations?
 	\item How does the fluid behave if we consider that the upper boundary is a free surface?  Then Bernoulli's principle of energy conservation through a pipe no longer applies.
 \end{itemize}
