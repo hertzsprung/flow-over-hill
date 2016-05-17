@@ -2,4 +2,15 @@ $(eval $(call LaTeXWithBibTeX,src/flow-over-hill,build,flow-over-hill))
 
 build/flow-over-hill/flow-over-hill.pdf: \
   src/flow-over-hill/ametsoc2014.bst \
-  src/flow-over-hill/references.bib
+  src/flow-over-hill/references.bib \
+  build/fig-subcritical/subcritical.tex \
+  build/fig-supercritical/supercritical.tex
+
+$(eval $(call MakeDir,build/fig-subcritical))
+$(eval $(call Gnuplot,build/fig-subcritical,subcritical.tex,src/flow-over-hill/subcritical.plt))
+
+$(eval $(call MakeDir,build/fig-supercritical))
+$(eval $(call Gnuplot,build/fig-supercritical,supercritical.tex,src/flow-over-hill/supercritical.plt))
+
+build/fig-subcritical/subcritical.tex build/fig-supercritical/supercritical.tex: \
+  src/flow-over-hill/shallow-water.plt

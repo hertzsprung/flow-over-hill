@@ -20,8 +20,10 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usetikzlibrary{patterns}
+\usepackage[margin=1pt]{subcaption}
+\usepackage{siunitx}
 
-\title{Thinking about 2D flow over a hill using Bernoulli's principle}
+\title{Theory of 2D flow over a hill}
 \author{James Shaw}
 \date{25th April 2016}
 
@@ -31,7 +33,10 @@
 
 \maketitle
 
-Earlier in my PhD I studied gravity waves that were induced by flow over a hill in the two-dimensional test case by \citet{schaer2002} using a numerical model of the Euler equations \citep{shaw-weller2016}.  Bernoulli's principle states that, for incompressible steady-state flow in a pipe, energy is conserved along a streamline \citep{vallis2006}
+Earlier in my PhD I studied gravity waves that were induced by flow over a hill in the two-dimensional test case by \citet{schaer2002} using a numerical model of the Euler equations \citep{shaw-weller2016}.
+
+\section{Using Bernoulli's principle}
+Bernoulli's principle states that, for incompressible steady-state flow in a pipe, energy is conserved along a streamline \citep{vallis2006}
 \begin{align}
 	\frac{\mathrm{D}}{\mathrm{D}t} \left( \underbrace{\frac{1}{2}\bm{u}^2}_\text{kinetic} + \underbrace{gz}_\text{potential} + \underbrace{\frac{p}{\rho_0}}_\text{internal} \right) = 0
 \end{align}
@@ -69,6 +74,32 @@ Some other ideas for further consideration:
 	\item Think about flow regimes in relation to the Froude number.  How is this derived, what is the threshold value and why?
 \end{itemize}
 
+\section{Using the shallow water equations}
+A steady-state solution of the shallow water equations is \citep{lin2007}
+\begin{align}
+	h'(x) = \left( \frac{F^2}{F^2 - 1} \right) h_s(x) \label{eqn:steady-state-shallow-water}
+%
+\intertext{where}
+%
+	F = \frac{U}{\sqrt{gH}}
+\end{align}
+where $h'(x)$ is the fluid surface height anomaly, $F$ is the shallow-water Froude number and $h_s(x)$ is the topography.
+I've plotted some steady-state subcritical (figure~\ref{fig:subcritical}) and supercritical (figure~\ref{fig:supercritical}) flows over a mountain with gnuplot that seem to agree with the theory from \citet[p. 33]{lin2007}.  I'd quite like to animate these flows to see some of the transient behaviour, and verify the solution of the steady-state equation~\ref{eqn:steady-state-shallow-water}.  But discretising the equation \citep[their equation 3.4.16]{lin2007} is a little involved and I'm not sure that it would be numerically stable.
+
+\begin{figure}
+	\centering
+	\small
+	\subcaptionbox{Subcritical, $u=\SI{1}{\meter\per\second}$, $F=0.026$ \label{fig:subcritical}}[\linewidth]{\input{../fig-subcritical/subcritical}} \\
+	\subcaptionbox{Supercritical $u=\SI{50}{\meter\per\second}$, $F=1.30$ \label{fig:supercritical}}[\linewidth]{\input{../fig-supercritical/supercritical}}
+	
+	\caption{Steady-state shallow water flows}
+	\label{fig:steady-state-shallow-water}
+\end{figure}
+
+\section{Using Boussinesq approximation}
+\begin{itemize}
+	\item Mountain drag is the integral of surface pressure over a mountain wavelength \citep[p. 113]{lin2007}
+\end{itemize}
 
 \bibliographystyle{ametsoc2014}
 \bibliography{references}
